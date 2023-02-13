@@ -3,7 +3,9 @@ guid: 95adc1f6f8e8fcd4fb9d0d1f3edcaa34
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - <weaponMesh>k__BackingField: {instanceID: 0}
+  - <bulletPrefab>k__BackingField: {fileID: 7633290880208537954, guid: a175617f74749c74d9cc92800ce2ceca, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

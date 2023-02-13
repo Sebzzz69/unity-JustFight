@@ -268,7 +268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: {fileID: 11400000, guid: a33916f8c0e26ca46810aaecf971fbdb, type: 2}
   firePoint: {fileID: 858081033}
-  bulletPrefab: {fileID: 7633290880208537954, guid: a175617f74749c74d9cc92800ce2ceca, type: 3}
   shootButton: 106
 --- !u!1 &673434161
 GameObject:
@@ -647,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420671785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: 2.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -669,7 +668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: {fileID: 11400000, guid: a33916f8c0e26ca46810aaecf971fbdb, type: 2}
   firePoint: {fileID: 1575464639}
-  bulletPrefab: {fileID: 7633290880208537954, guid: a175617f74749c74d9cc92800ce2ceca, type: 3}
   shootButton: 102
 --- !u!1 &1448503418
 GameObject:

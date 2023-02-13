@@ -11,7 +11,7 @@ public class BulletScript : MonoBehaviour
 
     Vector3 playerForward = new Vector3 (1f, 0f, 0f);
 
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
 
 
     private void Awake()
@@ -26,7 +26,6 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-
         transform.Translate(playerForward * speed * Time.deltaTime);
     }
 

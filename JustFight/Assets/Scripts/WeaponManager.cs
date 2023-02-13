@@ -27,13 +27,14 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(shootButton))
         {
             Shoot();
+            Debug.Log("Player shot");
         }
 
     }
 
     private void Shoot()
     {
-        if (bulletPrefab != null)
+         if (bulletPrefab != null)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }

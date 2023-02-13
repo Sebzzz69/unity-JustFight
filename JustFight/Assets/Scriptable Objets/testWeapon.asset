@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: testWeapon
   m_EditorClassIdentifier: 
   <weaponName>k__BackingField: testWeapon
-  <damage>k__BackingField: 5
-  <projectileSpeed>k__BackingField: 20
   <weaponMesh>k__BackingField: {fileID: 0}
+  <bulletPrefab>k__BackingField: {fileID: 7633290880208537954, guid: a175617f74749c74d9cc92800ce2ceca, type: 3}
