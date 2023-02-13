@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    [SerializeField] BulletSO bulletType;
 
     [SerializeField] float speed;
     [SerializeField] float damageAmount;
-
-  //  WeaponManager bulletStats;
 
     Vector3 playerForward = new Vector3 (1f, 0f, 0f);
 
@@ -18,15 +17,12 @@ public class BulletScript : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        this.speed = bulletType.projectileSpeed;
+        this.damageAmount = bulletType.damage;
         
     }
 
 
-    private void Start()
-    {
-        /*bulletStats = GetComponent<WeaponManager>();
-        damageAmount = bulletStats.bulletDamage;*/
-    }
 
     private void Update()
     {

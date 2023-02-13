@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcf93c635cb36842ac11f77179f3196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  damageAmount: 5
+  bulletType: {fileID: 11400000, guid: 601a4b90d494c4241969783c79fecf2a, type: 2}
+  speed: 0
+  damageAmount: 0
   rigidbody: {fileID: 0}
 --- !u!54 &-1811018467139386139
 Rigidbody:

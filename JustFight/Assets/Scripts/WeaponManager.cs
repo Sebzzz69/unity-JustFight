@@ -6,23 +6,20 @@ public class WeaponManager : MonoBehaviour
 {
    [SerializeField]  WeaponSO weaponType;
 
-  /*  public float bulletSpeed { get; set; }
+    public float bulletSpeed { get; set; }
     public float bulletDamage { get; private set; }
-    string weaponName;*/
+    string weaponName;
 
 
     public Transform firePoint;
-    public GameObject bulletPrefab;
+    GameObject bulletPrefab;
 
     [SerializeField] KeyCode shootButton;
 
     private void Awake()
     {
-        /*this.bulletDamage = weaponType.damage;
-        this.bulletSpeed = weaponType.projectileSpeed;
+        this.bulletPrefab = weaponType.bulletPrefab;
 
-        this.weaponName = weaponType.weaponName;
-        this.gameObject.name = weaponName;*/
     }
 
     private void Update()
