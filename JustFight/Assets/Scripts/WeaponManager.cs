@@ -14,7 +14,7 @@ public class WeaponManager : MonoBehaviour
     public Transform firePoint;
     GameObject bulletPrefab;
 
-    [SerializeField] KeyCode shootButton;
+    public KeyCode shootButton;
 
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class WeaponManager : MonoBehaviour
     {
          if (bulletPrefab != null)
         {
+            // Instaniates the bullet prefab
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
     }

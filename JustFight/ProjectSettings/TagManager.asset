@@ -7,6 +7,7 @@ TagManager:
   - Walls
   - Bullet
   - Ground
+  - Player2
   layers:
   - Default
   - TransparentFX

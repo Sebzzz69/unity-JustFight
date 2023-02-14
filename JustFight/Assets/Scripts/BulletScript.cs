@@ -26,6 +26,7 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
+        // Moves the bullet forward when spawned
         transform.Translate(playerForward * speed * Time.deltaTime);
     }
 
@@ -44,7 +45,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
         {
             // The hit player takes damage
             PlayerHealth health = collision.gameObject.GetComponentInParent<PlayerHealth>();
