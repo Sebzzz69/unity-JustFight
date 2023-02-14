@@ -29,7 +29,6 @@ public class WeaponManager : MonoBehaviour
             Shoot();
             Debug.Log("Player shot");
         }
-
     }
 
     private void Shoot()

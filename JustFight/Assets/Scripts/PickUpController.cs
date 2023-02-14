@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -10,9 +11,10 @@ public class PickUpController : MonoBehaviour
     [SerializeField] Rigidbody rigidbody;
     [SerializeField] BoxCollider collider;
     [SerializeField] Transform player, gunContainer;
-    [SerializeField] GameObject playerObject;
 
     WeaponManager weaponManager;
+    IfWeapon ifWeapon;
+    // if weapon for not pickup more than one weapon
 
     [SerializeField] float dropForwardForce, dropUpwardForce;
 
@@ -58,11 +60,6 @@ public class PickUpController : MonoBehaviour
         equipped = true;
         slotFull = true;
         pickable = false;
-
-        // Gets the trasform of the parent 
-        player = GetComponentInParent<Transform>();
-
-        weaponManager = GetComponent<WeaponManager>();
         
 
         // Make weapon a child of the gun container and move it to defaul position
@@ -71,16 +68,23 @@ public class PickUpController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
 
+        // Gets the trasform of the parent 
+        player = GetComponentInParent<Transform>(); // this causes a bug and does not set the player to the acutal player
+
+        weaponManager = gameObject.GetComponent<WeaponManager>();
+
         // Change the input depending on
         // which player picks it up
         if (weaponManager != null)
         {
             if (gunContainer.GetComponentInParent<PlayerOneComponent>())
             {
+                dropKey = KeyCode.T;
                 weaponManager.shootButton = KeyCode.F;
             }
             else if (gunContainer.GetComponentInParent<PlayerTwoComponent>())
             {
+                dropKey = KeyCode.Y;
                 weaponManager.shootButton = KeyCode.J;
             }
         }
@@ -98,6 +102,12 @@ public class PickUpController : MonoBehaviour
         equipped = false;
         slotFull = false;
         pickable = true;
+
+        if (ifWeapon != null)
+        {
+            ifWeapon.WeaponIsNotEquipped();
+        }
+        
 
         // Set parent to null
         transform.SetParent(null);
@@ -117,10 +127,7 @@ public class PickUpController : MonoBehaviour
         rigidbody.velocity = player.GetComponent<Rigidbody>().velocity;
 
         // Addforce
-        // FIX::
-        // Forwardforce is not working
-
-        if (player.transform.rotation.eulerAngles.y >= 180)
+        if (player.transform.rotation.eulerAngles.y == 180)
         {
             rigidbody.AddForce(-Vector3.right * dropForwardForce, ForceMode.Impulse);
         }
@@ -144,7 +151,8 @@ public class PickUpController : MonoBehaviour
     {
         // player 2 tag fix
         // Check if player collides with a weapon
-        if ((collision.gameObject.CompareTag("Player") && !equipped && !slotFull))
+
+        if (collision.gameObject.CompareTag("Player") && !equipped && !slotFull)
         {
             // Gets the transform of the gun conatiner in player
             gunContainer = collision.gameObject.GetComponentInChildren<ItemHolder>().transform;
@@ -152,7 +160,7 @@ public class PickUpController : MonoBehaviour
             // Picks up weapon
             PickUp();
         }
-        else if ((collision.gameObject.CompareTag("Player2") && !equipped && !slotFull))
+        else if (collision.gameObject.CompareTag("Player2") && !equipped && !slotFull)
         {
 
             // Gets the transform of the gun conatiner in player
@@ -160,10 +168,6 @@ public class PickUpController : MonoBehaviour
 
             // Picks up weapon
             PickUp();
-        }
-        else
-        {
-
         }
 
     }
