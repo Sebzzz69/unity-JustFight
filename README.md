@@ -1,2 +1,2 @@
 # unity-JustFight
-pojektveckan v7
+Just Fight is a work-in-progress 2D platformer being devloped by Ghost Pepper Studios (GPS). 
