@@ -19,7 +19,7 @@ public class CoinCollector : MonoBehaviour
 
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (coins > 0)
         {
@@ -29,10 +29,17 @@ public class CoinCollector : MonoBehaviour
             gameManager = FindObjectOfType<GameManager>();
             if (gameManager != null)
             {
-                gameManager.PlayeDead(coins);
+                gameManager.StealScore(coins);  
             }
             
         }
         
     }
+
+
+    private void OnEnable()
+    {
+        
+    }
+
 }

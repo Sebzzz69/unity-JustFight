@@ -17,8 +17,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            // Report this to gameManager
-            // Do something about it
 
             KillPlayer();
             Invoke("RespawnPlayer", respawnTime);
@@ -45,7 +43,6 @@ public class PlayerHealth : MonoBehaviour
         this.gameObject.SetActive(true);
         this.health = this.maxHealth;
     }
-
 
 
 

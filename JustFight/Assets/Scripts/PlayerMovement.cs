@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Vector2 spawnPosition;
+
+    new Rigidbody rigidbody;
+
     float time = 0;
-
-    Rigidbody rigidbody;
-
     public float jumpforce = 10f;
     float remaningJumps = 0f;
 
@@ -23,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         tempMovSpeed = moveSpeed;
+
+        // Sets the spawn position
+        spawnPosition.x = this.gameObject.transform.position.x;
+        spawnPosition.y = this.gameObject.transform.position.y;
     }
 
     // Update is called once per frame
@@ -57,18 +62,10 @@ public class PlayerMovement : MonoBehaviour
             remaningJumps = remaningJumps + 1;
             Debug.Log("yee");
         }
-       /* if (collision.gameObject.CompareTag("Walls"))
-        {
-            tempMovSpeed = 0f;
-        }*/
-
-    }
-
-   /* private void OnCollisionExit(Collision collision)
-    {
         if (collision.gameObject.CompareTag("Walls"))
         {
-            tempMovSpeed = moveSpeed;
+            this.gameObject.transform.position = spawnPosition;
+            Debug.Log(spawnPosition);
         }
-    }*/
+    }
 }
