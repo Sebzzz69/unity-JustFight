@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     float remaningJumps = 0f;
 
     public float moveSpeed = 1000f;
+    float tempMovSpeed;
 
     [Header("Input")]
     [SerializeField] KeyCode moveRight;
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        tempMovSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -28,15 +31,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(moveRight))
         {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            tempMovSpeed = moveSpeed;
+            transform.Translate(Vector3.right * tempMovSpeed * Time.deltaTime);
         }
         if (Input.GetKey(moveLeft))
         {
-            transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
+            tempMovSpeed = moveSpeed;
+            transform.Translate(-Vector3.right * tempMovSpeed * Time.deltaTime);
         }
         if (remaningJumps > 0)
         {
-            if (Input.GetKey(jumpKey))
+            if (Input.GetKeyDown(jumpKey))
             {
                 rigidbody.AddForce(Vector3.up * jumpforce, (ForceMode)ForceMode2D.Impulse);
                 _ = remaningJumps-- * Time.deltaTime;
@@ -49,9 +54,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            remaningJumps = remaningJumps + 10;
+            remaningJumps = remaningJumps + 1;
             Debug.Log("yee");
         }
+       /* if (collision.gameObject.CompareTag("Walls"))
+        {
+            tempMovSpeed = 0f;
+        }*/
 
     }
+
+   /* private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Walls"))
+        {
+            tempMovSpeed = moveSpeed;
+        }
+    }*/
 }

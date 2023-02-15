@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [field:SerializeField] public float health { get; private set; }
-    [field: SerializeField] public float maxHealth { get; private set; }
+    [SerializeField] float maxHealth;
+    [SerializeField] float respawnTime = 2f;
+    float health;
 
     private void Start()
     {
@@ -20,16 +21,15 @@ public class PlayerHealth : MonoBehaviour
             // Do something about it
 
             KillPlayer();
+            Invoke("RespawnPlayer", respawnTime);
         }
     }
 
     private void KillPlayer()
     {
-        if (this != null)
-        {
-            Destroy(this.gameObject);
-        }
-       // Debug.Log("Player died");
+           this.gameObject.SetActive(false);
+        
+           Debug.Log("Player died");
     }
 
     public void TakeDamage(float damageAmount)
@@ -38,6 +38,12 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player took damage");
         health -= damageAmount;
         
+    }
+
+    void RespawnPlayer()
+    {
+        this.gameObject.SetActive(true);
+        this.health = this.maxHealth;
     }
 
 

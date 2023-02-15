@@ -53,6 +53,13 @@ public class PickUpController : MonoBehaviour
         {
             Drop();
         }
+
+        if (equipped)
+        {
+            // Makes sure the gun container always follows the player
+            transform.localPosition = Vector3.zero * Time.deltaTime;
+        }
+
     }
 
     private void PickUp()
@@ -67,9 +74,6 @@ public class PickUpController : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
-
-        // Gets the trasform of the parent 
-        player = GetComponentInParent<Transform>(); // this causes a bug and does not set the player to the acutal player
 
         weaponManager = gameObject.GetComponent<WeaponManager>();
 
@@ -157,10 +161,13 @@ public class PickUpController : MonoBehaviour
             // Gets the transform of the gun conatiner in player
             gunContainer = collision.gameObject.GetComponentInChildren<ItemHolder>().transform;
 
+            // Gets the transform of the player
+            player = collision.gameObject.GetComponent<Transform>();
+
             // Picks up weapon
             PickUp();
         }
-        else if (collision.gameObject.CompareTag("Player2") && !equipped && !slotFull)
+        /*else if (collision.gameObject.CompareTag("Player2") && !equipped && !slotFull)
         {
 
             // Gets the transform of the gun conatiner in player
@@ -168,7 +175,7 @@ public class PickUpController : MonoBehaviour
 
             // Picks up weapon
             PickUp();
-        }
+        }*/
 
     }
 }
