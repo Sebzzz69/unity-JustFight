@@ -5,8 +5,10 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     [SerializeField] float delay = 3f;
-    [SerializeField] float radius = 5f;
-    [SerializeField] float explotionForce = 10f;
+    [SerializeField] float radius = 20;
+    [SerializeField] float explotionForce = 700f;
+
+    [SerializeField] float damage;
 
 
     float upwardsForce = 5f;
@@ -42,14 +44,28 @@ public class Grenade : MonoBehaviour
 
         foreach (Collider nearbyObject in colliders)
         {
-            Rigidbody rigidbody = nearbyObject.GetComponent<Rigidbody>();
-            if (rigidbody != null)
+            Rigidbody rigidbody = nearbyObject.GetComponentInParent<Rigidbody>();
+            
+            if(rigidbody != null)
             {
-                rigidbody.AddExplosionForce(explotionForce, transform.position, radius, upwardsForce);
+
+                if (nearbyObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sprite))
+                {
+                    PlayerHealth playerHealth = nearbyObject.GetComponentInParent<PlayerHealth>();
+                    playerHealth.TakeDamage(damage);
+                    Debug.Log("grenade damage");
+                }
+                
+
+                // Adds force
+                rigidbody.AddExplosionForce(explotionForce * 200, transform.position, radius, 100f);
+                Debug.Log(nearbyObject.gameObject.name);
+
+                
+
             }
+            
         }
-        // Add force
-        // Damage
 
         // Remove grenade
         Destroy(this.gameObject);

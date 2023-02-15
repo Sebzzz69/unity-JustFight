@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 1000f;
     float tempMovSpeed;
 
+    [SerializeField] GameObject grenadeThrower;
+
     [Header("Input")]
     [SerializeField] KeyCode moveRight;
     [SerializeField] KeyCode moveLeft;
@@ -66,6 +68,15 @@ public class PlayerMovement : MonoBehaviour
         {
             this.gameObject.transform.position = spawnPosition;
             Debug.Log(spawnPosition);
+        }
+        if (collision.gameObject.CompareTag("FakeGrenade"))
+        {
+
+            // Can throw if collided with a 'fake' grenade
+            GrenadeThrower thrower = grenadeThrower.GetComponent<GrenadeThrower>();
+            thrower.canThrow = true;
+
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -54,6 +54,7 @@ public class PickUpController : MonoBehaviour
             Drop();
         }
 
+
         if (equipped)
         {
             // Makes sure the gun container always follows the player
