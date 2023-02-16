@@ -28,7 +28,8 @@ public class Coin : MonoBehaviour
     void TeleportCoin()
     {
 
-        gameObject.transform.position = new Vector3(Random.Range(-53, 52), Random.Range(2, 35));
+        gameObject.transform.position = new Vector3(Random.Range(-53, 52), Random.Range(2, 35), this.gameObject.transform.position.z);
+       
 
     }
 

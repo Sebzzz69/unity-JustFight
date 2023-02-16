@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 spawnPosition;
+    Vector3 spawnPosition;
 
     new Rigidbody rigidbody;
 
     float time = 0;
     public float jumpforce = 10f;
     float remaningJumps = 0f;
+    int maxJumps = 2;
 
     public float moveSpeed = 1000f;
     float tempMovSpeed;
+
+    bool down = false;
 
     [SerializeField] GameObject grenadeThrower;
 
@@ -22,14 +25,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] KeyCode moveRight;
     [SerializeField] KeyCode moveLeft;
     [SerializeField] KeyCode jumpKey;
+    [SerializeField] KeyCode downKey;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        tempMovSpeed = moveSpeed;
 
         // Sets the spawn position
         spawnPosition.x = this.gameObject.transform.position.x;
         spawnPosition.y = this.gameObject.transform.position.y;
+        spawnPosition.z = this.gameObject.transform.position.z;
     }
 
     // Update is called once per frame
@@ -38,22 +42,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(moveRight))
         {
-            tempMovSpeed = moveSpeed;
-            transform.Translate(Vector3.right * tempMovSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(moveLeft))
         {
-            tempMovSpeed = moveSpeed;
-            transform.Translate(-Vector3.right * tempMovSpeed * Time.deltaTime);
+            transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
         }
-        if (remaningJumps > 0)
+
+        if (Input.GetKeyDown(downKey) && down)
         {
-            if (Input.GetKeyDown(jumpKey))
-            {
-                rigidbody.AddForce(Vector3.up * jumpforce, (ForceMode)ForceMode2D.Impulse);
-                _ = remaningJumps-- * Time.deltaTime;
-                time = 0;
-            }
+            transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(jumpKey) && remaningJumps >= maxJumps)
+        {
+            rigidbody.AddForce(Vector3.up * jumpforce, (ForceMode)ForceMode2D.Impulse);
+            remaningJumps--;
+            down = true;
         }
     }
 
@@ -61,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            remaningJumps = remaningJumps + 1;
-            Debug.Log("yee");
+            remaningJumps = 2;
+            down = false;
         }
         if (collision.gameObject.CompareTag("Walls"))
         {

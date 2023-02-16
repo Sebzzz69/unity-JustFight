@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +13,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerOneScoreText;
     [SerializeField] GameObject playerTwoScoreText;
 
+    [SerializeField] Sprite playerOneSprite;
+    [SerializeField] Sprite playerTwoSprite;
 
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+    public void WinSenario(string playerWinner)
+    {
+        
+
+        if (playerWinner == "PlayerOneScoreText")
+        {
+            SceneManager.LoadScene("WinScenePlayerOne");
+        }
+        else
+        {
+            SceneManager.LoadScene("WinScenePlayerTwo");
+
+        }
+
+
+
+    }
     public void StealScore(int score)
     {
         Debug.Log("Player died");

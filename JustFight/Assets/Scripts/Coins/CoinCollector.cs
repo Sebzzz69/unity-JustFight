@@ -15,6 +15,7 @@ public class CoinCollector : MonoBehaviour
         {
             coins++;
             Debug.Log(coins);
+
         }
 
     }

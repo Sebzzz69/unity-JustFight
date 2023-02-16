@@ -32,6 +32,13 @@ public class TextNumbers : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteArray[counter];
         }
+        
+        // Player wins if 15 or more score
+        if (counter >= 15)
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.WinSenario(this.gameObject.name);   
+        }
     }
     int singular(int dubbleDidgets)
     {
