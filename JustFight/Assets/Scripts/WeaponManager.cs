@@ -8,7 +8,12 @@ public class WeaponManager : MonoBehaviour
 
     public float bulletSpeed { get; set; }
     public float bulletDamage { get; private set; }
+
+    [SerializeField] float fireRate = 0.2f;
+
     string weaponName;
+
+    bool allowFire = true;
 
 
     public Transform firePoint;
@@ -19,15 +24,21 @@ public class WeaponManager : MonoBehaviour
     private void Awake()
     {
         this.bulletPrefab = weaponType.bulletPrefab;
+        fireRate = 0.2f;
 
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(shootButton))
+        if (Input.GetKeyDown(shootButton) && allowFire)
         {
             Shoot();
-            Debug.Log("Player shot");
+            allowFire = false;
+
+           // Debug.Log("Player shot");
+
+            StartCoroutine(WaitToFire());
+            
         }
     }
 
@@ -38,5 +49,12 @@ public class WeaponManager : MonoBehaviour
             // Instaniates the bullet prefab
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
+
+    }
+
+    IEnumerator WaitToFire()
+    {
+        yield return new WaitForSeconds(fireRate);
+        allowFire = true;
     }
 }

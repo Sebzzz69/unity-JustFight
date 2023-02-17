@@ -15,16 +15,17 @@ public class AnimationScript : MonoBehaviour
 
         Vector3 newScale = transform.localScale;
 
-        _ = timeRight++ * Time.deltaTime;
+        // _ = timeRight++ * Time.deltaTime;
+        timeRight++;
         if (Input.GetKey(rightKey))
         {
-            newScale.x = 27f;
+           // newScale.x = 27f;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteArray[timeRight / 100];
         }
 
         if (Input.GetKey(leftKey))
         {
-            newScale.x = -27f;
+           // newScale.x = -27f;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteArray[timeRight / 100];
         }
 
@@ -33,7 +34,7 @@ public class AnimationScript : MonoBehaviour
         {
             timeRight = 0;
         }
-        transform.localScale = newScale;
+       // transform.localScale = newScale;
 
     }
 }

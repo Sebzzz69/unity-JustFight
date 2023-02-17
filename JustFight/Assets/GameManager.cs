@@ -21,6 +21,16 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
+
+    private void Update()
+    {
+        // Check for input to go back to main menu
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
     public void WinSenario(string playerWinner)
     {
         

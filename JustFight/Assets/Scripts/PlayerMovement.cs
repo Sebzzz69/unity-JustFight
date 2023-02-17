@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector3 spawnPosition;
+    Vector3 playerRortation;
 
     new Rigidbody rigidbody;
 
@@ -34,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
         spawnPosition.x = this.gameObject.transform.position.x;
         spawnPosition.y = this.gameObject.transform.position.y;
         spawnPosition.z = this.gameObject.transform.position.z;
+
+        //playerRortation.x = this.gameObject.transform.rotation.x;
+
     }
 
     // Update is called once per frame
@@ -42,11 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(moveRight))
         {
+            this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(moveLeft))
         {
-            transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
+            this.gameObject.transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            
+
         }
 
         if (Input.GetKeyDown(downKey) && down)

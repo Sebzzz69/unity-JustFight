@@ -49,7 +49,8 @@ public class Grenade : MonoBehaviour
             if(rigidbody != null)
             {
 
-                if (nearbyObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sprite) && !this.gameObject)
+                // Grenade does not work anymore
+                if (nearbyObject.TryGetComponent<AnimationScript>(out AnimationScript animation))
                 {
                     PlayerHealth playerHealth = nearbyObject.GetComponentInParent<PlayerHealth>();
                     playerHealth.TakeDamage(damage);

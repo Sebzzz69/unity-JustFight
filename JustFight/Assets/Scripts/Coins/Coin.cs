@@ -5,6 +5,17 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
 
+    float teleportTImer;
+
+    private void Update()
+    {
+        if (teleportTImer >= 10)
+        {
+            TeleportCoin();
+            teleportTImer = 0f;
+        }
+        teleportTImer += 1 * Time.deltaTime;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
