@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Scene currentScene =  SceneManager.GetActiveScene();
         // Check for input to go back to main menu
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currentScene.name != "MainMenu")
         {
             SceneManager.LoadScene("MainMenu");
         }
