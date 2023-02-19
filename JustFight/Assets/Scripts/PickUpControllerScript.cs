@@ -11,6 +11,7 @@ public class PickUpControllerScript : MonoBehaviour
     Transform weaponTransform;
 
     GameObject weaponObject;
+    WeaponManager weaponManager;
 
     [SerializeField]
     float dropForwardForce;
@@ -40,7 +41,7 @@ public class PickUpControllerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dropped)
+        if (dropped && equipped)
         {
             Drop();
             dropped = false;
@@ -58,6 +59,9 @@ public class PickUpControllerScript : MonoBehaviour
 
         weaponTransform.transform.SetParent(null);
         equipped = false;
+
+        // Sets inputs to null
+        weaponManager.shootButton = KeyCode.None;
 
         // Add forces to the object
         if (player.transform.rotation.eulerAngles.y == 180)
@@ -80,27 +84,37 @@ public class PickUpControllerScript : MonoBehaviour
         weaponTransform.localRotation = weaponHolder.localRotation;
         weaponTransform.localScale = Vector3.one;
 
+        // Changes inputs
+        weaponManager = gameObject.GetComponentInChildren<WeaponManager>();
+        if (this.gameObject.GetComponent<PlayerOneComponent>())
+        {
+            weaponManager.shootButton = KeyCode.F;
+        }
+        else if (this.gameObject.GetComponent<PlayerTwoComponent>())
+        {
+            weaponManager.shootButton = KeyCode.J;
+        }
+
         Rigidbody rigidbody = weaponObject.GetComponent<Rigidbody>();
         rigidbody.isKinematic = true;
         Collider collider = weaponObject.GetComponent<Collider>();
         collider.isTrigger = true;
 
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Weapon") && !equipped)
+        private void OnCollisionEnter(Collision collision)
         {
-            collision.gameObject.transform.SetParent(weaponHolder);
+            Debug.Log(collision.gameObject.name);
+            if (collision.gameObject.CompareTag("Weapon") && !equipped)
+            {
+                collision.gameObject.transform.SetParent(weaponHolder);
 
-            weaponObject = collision.gameObject;
-            weaponTransform = collision.gameObject.GetComponent<Transform>();
+                weaponObject = collision.gameObject;
+                weaponTransform = collision.gameObject.GetComponent<Transform>();
 
-            PickUp();
+                PickUp();
 
-            
+
+            }
+
         }
-       
-    }
 }

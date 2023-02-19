@@ -5,43 +5,55 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
 
-    float teleportTImer;
+    float teleportTimer;
 
     private void Update()
     {
-        if (teleportTImer >= 10)
-        {
-            TeleportCoin();
-            teleportTImer = 0f;
-        }
-        teleportTImer += 1 * Time.deltaTime;
+       // TeleportTimer();
     }
-    private void OnCollisionEnter(Collision collision)
+
+    void TeleportTimer()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (teleportTimer >= 10)
         {
-
             TeleportCoin();
+            teleportTimer = 0f;
         }
-
-
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            Debug.Log("hit");
-
-            TeleportCoin();
-        }
+        teleportTimer += 1 * Time.deltaTime;
     }
 
     void TeleportCoin()
     {
 
-        gameObject.transform.position = new Vector3(Random.Range(-53, 52), Random.Range(2, 35), this.gameObject.transform.position.z);
+        this.gameObject.transform.position = new Vector3(Random.Range(-53, 52), Random.Range(2, 35), this.gameObject.transform.position.z);
        
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            TeleportCoin();
+        }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("spwaned in ground");
+
+            TeleportCoin();
+        }
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("spwaned in ground");
+
+            TeleportCoin();
+        }
+    }
+
 
 }

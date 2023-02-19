@@ -10,13 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerOne;
     [SerializeField] GameObject playerTwo;
 
-    [SerializeField] GameObject playerOneScoreText;
-    [SerializeField] GameObject playerTwoScoreText;
-
-    [SerializeField] Sprite playerOneSprite;
-    [SerializeField] Sprite playerTwoSprite;
-
-
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -36,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         
 
-        if (playerWinner == "PlayerOneScoreText")
+        if (playerWinner == "PlayerOne")
         {
             SceneManager.LoadScene("WinScenePlayerOne");
         }
@@ -58,11 +51,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player 1 took score");
 
             // 'Steals' the other players score
-            playerOne.GetComponent<CoinCollector>().coins = score;
+            playerOne.GetComponent<ScoreManagerScript>().coins = score;
 
             // Reset other players score
-            playerTwo.GetComponent<CoinCollector>().coins = 0;
-            playerTwoScoreText.GetComponent<TextNumbers>().counter = 0;
+            /*playerTwo.GetComponent<CoinCollector>().coins = 0;
+            playerTwoScoreText.GetComponent<TextNumbers>().counter = 0;*/
         }
         
 
@@ -72,11 +65,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player 1 took score");
             
             // 'Steals' the other players score
-            playerTwo.GetComponent<CoinCollector>().coins = score;
+            playerTwo.GetComponent<ScoreManagerScript>().coins = score;
 
             // Reset other players score
-            playerOne.GetComponent<CoinCollector>().coins = 0;
-            playerOneScoreText.GetComponent<TextNumbers>().counter = 0;
+            /*playerOne.GetComponent<CoinCollector>().coins = 0;
+            playerOneScoreText.GetComponent<TextNumbers>().counter = 0;*/
 
 
 
