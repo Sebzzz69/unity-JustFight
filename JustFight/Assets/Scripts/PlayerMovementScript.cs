@@ -24,8 +24,6 @@ public class PlayerMovementScript : MonoBehaviour
     [Header("Checking")]
     [SerializeField]
     LayerMask groundLayer;
-    [SerializeField]
-    LayerMask wallLayer;
 
     float playerHeight;
     float playerWidth;
@@ -53,12 +51,11 @@ public class PlayerMovementScript : MonoBehaviour
     private void Update()
     {
         GroundCheck();
-       // CheckWall();
 
         PlayerInput();
         JumpInput();
 
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
     }
 
     private void FixedUpdate()
@@ -81,7 +78,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
 
-    #region Functions
+    #region Methods
 
     private void PlayerInput()
     {
@@ -110,6 +107,15 @@ public class PlayerMovementScript : MonoBehaviour
 
     }
 
+    private void MovePlayer()
+    {
+
+        // Moves player
+        // rigidbody.AddForce(direction * moveSpeed * 10 * Time.fixedDeltaTime, ForceMode.Force);
+        rigidbody.velocity = new Vector3(moveDirection * moveSpeed * 15 * Time.fixedDeltaTime, rigidbody.velocity.y, 0f);
+
+    }
+
     private void JumpInput()
     {
         if (Input.GetKeyDown(jumpKey))
@@ -122,15 +128,6 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
-    private void MovePlayer()
-    {
-
-        // Moves player
-        // rigidbody.AddForce(direction * moveSpeed * 10 * Time.fixedDeltaTime, ForceMode.Force);
-        rigidbody.velocity = new Vector3(moveDirection * moveSpeed * 15 * Time.fixedDeltaTime, rigidbody.velocity.y, 0f);
-
-    }
-
     private void Jump()
     {
         rigidbody.AddForce(Vector3.up * jumpForce * 10 * Time.fixedDeltaTime, ForceMode.Impulse);
@@ -141,13 +138,10 @@ public class PlayerMovementScript : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector2.down, playerHeight / 10, groundLayer);
     }
 
-    private void CheckWall()
-    {
-            isFacingWall = Physics.Raycast(transform.position, direction, playerWidth / 2 + 0.2f, groundLayer);
-    }
-
 
     #endregion
+
+
 
 }
 

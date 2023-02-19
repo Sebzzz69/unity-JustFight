@@ -30,7 +30,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(shootButton) && allowFire)
+        if (Input.GetKey(shootButton) && allowFire)
         {
             Shoot();
             allowFire = false;

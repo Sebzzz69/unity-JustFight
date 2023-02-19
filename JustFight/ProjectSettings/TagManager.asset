@@ -10,6 +10,7 @@ TagManager:
   - Player2
   - Coin
   - FakeGrenade
+  - Weapon
   layers:
   - Default
   - TransparentFX

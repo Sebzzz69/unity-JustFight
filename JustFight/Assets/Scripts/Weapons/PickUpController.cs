@@ -13,6 +13,7 @@ public class PickUpController : MonoBehaviour
     [SerializeField] Transform player, gunContainer;
 
     WeaponManager weaponManager;
+    ItemHolder weaponCheck;
     IfWeapon ifWeapon;
     // if weapon for not pickup more than one weapon
 
@@ -28,7 +29,7 @@ public class PickUpController : MonoBehaviour
     private void Start()
     {
         // Setup
-        if (!equipped)
+        if (!weaponCheck.isWeaponEquipped)
         {
             gunScript.enabled = false;
             rigidbody.isKinematic = false;
@@ -36,7 +37,7 @@ public class PickUpController : MonoBehaviour
 
             weaponManager = GetComponent<WeaponManager>();
         }
-        if (equipped)
+        if (weaponCheck.isWeaponEquipped)
         {
             gunScript.enabled = true;
             rigidbody.isKinematic = true;
@@ -49,13 +50,13 @@ public class PickUpController : MonoBehaviour
 
     private void Update()
     {
-        if (equipped && Input.GetKeyDown(dropKey))
+        if (weaponCheck.isWeaponEquipped && Input.GetKeyDown(dropKey))
         {
             Drop();
         }
 
 
-        if (equipped)
+        if (weaponCheck.isWeaponEquipped)
         {
             // Makes sure the gun container always follows the player
             transform.localPosition = Vector3.zero * Time.deltaTime;
@@ -65,7 +66,7 @@ public class PickUpController : MonoBehaviour
 
     private void PickUp()
     {
-        equipped = true;
+        weaponCheck.isWeaponEquipped = true;
         slotFull = true;
         pickable = false;
         
@@ -104,7 +105,7 @@ public class PickUpController : MonoBehaviour
 
     private void Drop()
     {
-        equipped = false;
+        weaponCheck.isWeaponEquipped = false;
         slotFull = false;
         pickable = true;
 
@@ -154,13 +155,14 @@ public class PickUpController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // player 2 tag fix
         // Check if player collides with a weapon
-
-        if (collision.gameObject.CompareTag("Player") && !equipped && !slotFull)
+        if (collision.gameObject.CompareTag("Player") && !weaponCheck.isWeaponEquipped && !slotFull)
         {
             // Gets the transform of the gun conatiner in player
             gunContainer = collision.gameObject.GetComponentInChildren<ItemHolder>().transform;
+
+            weaponCheck = collision.gameObject.GetComponent<ItemHolder>();
+            weaponCheck.isWeaponEquipped = true;
 
             // Gets the transform of the player
             player = collision.gameObject.GetComponent<Transform>();
@@ -168,15 +170,10 @@ public class PickUpController : MonoBehaviour
             // Picks up weapon
             PickUp();
         }
-        /*else if (collision.gameObject.CompareTag("Player2") && !equipped && !slotFull)
+        else
         {
 
-            // Gets the transform of the gun conatiner in player
-            gunContainer = collision.gameObject.GetComponentInChildren<ItemHolder>().transform;
-
-            // Picks up weapon
-            PickUp();
-        }*/
+        }
 
     }
 }
