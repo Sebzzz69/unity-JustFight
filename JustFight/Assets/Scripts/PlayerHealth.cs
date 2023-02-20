@@ -8,9 +8,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float respawnTime = 2f;
     float health;
 
+    Vector2 respawnPoint;
+
     private void Start()
     {
         this.health = this.maxHealth;
+        respawnPoint = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
     }
 
     private void Update()
@@ -40,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     void RespawnPlayer()
     {
+        this.gameObject.transform.position = respawnPoint;
         this.gameObject.SetActive(true);
         this.health = this.maxHealth;
     }

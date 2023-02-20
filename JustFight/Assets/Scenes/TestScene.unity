@@ -727,12 +727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6353b820a3c3fe499719a77ef7139d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOne: {fileID: 1924140976}
-  playerTwo: {fileID: 1063574123}
-  playerOneScoreText: {fileID: 406559826}
-  playerTwoScoreText: {fileID: 659723882}
-  playerOneSprite: {fileID: 21300000, guid: 8f9db5c5b8e9631489a95f2e27ab4bcf, type: 3}
-  playerTwoSprite: {fileID: -1989227586, guid: 0add7431a29b470409d5edb34177fd7c, type: 3}
+  playerOne: {fileID: 2115115740}
+  playerTwo: {fileID: 2063676591}
 --- !u!4 &549153879
 Transform:
   m_ObjectHideFlags: 0
@@ -1258,6 +1254,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &731549695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7403037474209668657, guid: a1003823f488c69409669fcff37277db, type: 3}
+  m_PrefabInstance: {fileID: 600107951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &731549700
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731549695}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &771198470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1454,8 @@ Transform:
   m_LocalPosition: {x: -11.3, y: -9.798287, z: 0}
   m_LocalScale: {x: 15.988628, y: 15.988628, z: 15.988628}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1064611284}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1523,7 +1541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: {fileID: 11400000, guid: a33916f8c0e26ca46810aaecf971fbdb, type: 2}
   fireRate: 0.2
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1064611284}
   shootButton: 0
 --- !u!1 &930145948
 GameObject:
@@ -1753,6 +1771,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4225831822482725113, guid: 8b404beb921c7f54d82f0e50cea1bc7a, type: 3}
   m_PrefabInstance: {fileID: 4225831821834388114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1064611283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064611284}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064611284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064611283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2041, y: 0.0323, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 904347462}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157615281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,6 +2876,7 @@ GameObject:
   - component: {fileID: 2063676599}
   - component: {fileID: 2063676600}
   - component: {fileID: 2063676601}
+  - component: {fileID: 2063676602}
   m_Layer: 0
   m_Name: PlayerOne
   m_TagString: Player
@@ -2945,6 +2995,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   scoreTextObj: {fileID: 1400095024}
+--- !u!114 &2063676602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063676591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c27c5b18361d6458f47fbb09c49e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2115115740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,6 +3022,7 @@ GameObject:
   - component: {fileID: 2115115741}
   - component: {fileID: 2115115747}
   - component: {fileID: 2115115748}
+  - component: {fileID: 2115115749}
   m_Layer: 0
   m_Name: PlayerTwo
   m_TagString: Player
@@ -3077,6 +3140,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   scoreTextObj: {fileID: 127914878}
+--- !u!114 &2115115749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115115740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac62e03c12673f14eb3fc90ad2f1ae88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3263281128742823791
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,7 +5,16 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
 
+    float collisionCheckDistance = 10f;
+    bool willCollide;
+
     float teleportTimer;
+    Rigidbody rigibody;
+
+    private void Start()
+    {
+        rigibody = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
@@ -26,7 +35,19 @@ public class Coin : MonoBehaviour
     {
 
         this.gameObject.transform.position = new Vector3(Random.Range(-53, 52), Random.Range(2, 35), this.gameObject.transform.position.z);
-       
+
+    }
+
+    private void NewCoinPosition()
+    {
+        TeleportCoin();
+
+        RaycastHit hit;
+        if(rigibody.SweepTest(transform.right, out hit, collisionCheckDistance) || rigibody.SweepTest(transform.up, out hit, collisionCheckDistance))
+        {
+            TeleportCoin();
+            Debug.Log("Coin insde moved");
+        }
 
     }
 
@@ -34,25 +55,10 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            TeleportCoin();
+            NewCoinPosition();
         }
 
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            Debug.Log("spwaned in ground");
 
-            TeleportCoin();
-        }
-
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            Debug.Log("spwaned in ground");
-
-            TeleportCoin();
-        }
     }
 
 

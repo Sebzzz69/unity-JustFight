@@ -103,7 +103,7 @@ public class PickUpControllerScript : MonoBehaviour
     }
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.gameObject.name);
+           // Debug.Log(collision.gameObject.name);
             if (collision.gameObject.CompareTag("Weapon") && !equipped)
             {
                 collision.gameObject.transform.SetParent(weaponHolder);

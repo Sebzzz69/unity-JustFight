@@ -58,7 +58,7 @@ public class BulletScript : MonoBehaviour
         {
             DestroyBullet();
         }
-        else if (collision.gameObject.CompareTag("Bullet"))
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             DestroyBullet();
         }

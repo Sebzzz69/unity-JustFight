@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: testBullet
   m_EditorClassIdentifier: 
   <damage>k__BackingField: 5
-  <projectileSpeed>k__BackingField: 40
+  <projectileSpeed>k__BackingField: 60
