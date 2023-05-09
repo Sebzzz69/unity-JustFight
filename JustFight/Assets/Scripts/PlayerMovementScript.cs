@@ -111,7 +111,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
 
         // Moves player
-        // rigidbody.AddForce(direction * moveSpeed * 10 * Time.fixedDeltaTime, ForceMode.Force);
+        //rigidbody.AddForce(direction * moveSpeed * 10 * Time.fixedDeltaTime, ForceMode.Force);
         rigidbody.velocity = new Vector3(moveDirection * moveSpeed * 15 * Time.fixedDeltaTime, rigidbody.velocity.y, 0f);
 
     }
